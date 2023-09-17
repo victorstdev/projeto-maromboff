@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Página Inicial{% endblock title %}
+{% block content %}
+<div class="mb-4 bg-body-light rounded-2">
+    <div class="container-fluid py-3">
+        <h1 class="display-5 fw-bold">Bem-vindo(a)!</h1>
+        <p class="col-md-8 fs-4">Você já conseguiu vender {{ vendas }} banoffs até o momento.<br>Gostaria de atualizar suas vendas?</p>
+        <a class="btn btn-primary" href="{% url "registrar_venda" %}">Registrar venda</a>
+    </div>
+</div>
+<hr>
+<h2>Links Rápidos:</h2>
+<ul class="list-group">
+    <a class="list-group-item list-group-item-action" href="{% url 'registrar_compra' %}">Registrar Compra</a>
+    <a class="list-group-item list-group-item-action" href="{% url 'registrar_venda' %}">Registrar Venda</a>
+    <a class="list-group-item list-group-item-action" href="{% url 'lista_compras' %}">Todas as Compras</a>
+    <a class="list-group-item list-group-item-action" href="{% url 'lista_vendas' %}">Todas as Vendas</a>
+    <a class="list-group-item list-group-item-action" href="{% url 'analise_com_periodo' %}">Análise de Investimento e Lucro</a>
+</ul>
+{% endblock content %}

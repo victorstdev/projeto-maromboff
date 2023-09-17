@@ -1,0 +1,24 @@
+<!-- registrar_compra.html -->
+{% extends "base.html" %}
+{% block title %}Registrar Compra{% endblock title %}
+{% block content %}
+<script>
+    $(function () {
+        $("#id_data_compra").datepicker();
+    });
+</script>
+<h1>Registrar Compra</h1>
+<form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="mb-3">
+            <label for="{{ field.id_for_label }}" class="form-label">
+                {{ field.label }}
+            </label>
+            {{ field }}
+        </div>
+    {% endfor %}
+    <a href="{% url 'index' %}" class="btn btn-outline-primary">Voltar</a>
+    <button type="submit" class="btn btn-primary">Registrar Compra</button>
+</form>
+{% endblock content %}
