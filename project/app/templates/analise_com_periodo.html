@@ -1,22 +1,28 @@
 {% extends "base.html" %}
 {% block title %}Análise de Investimento{% endblock title %}
 {% block content %}
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-        $(function () {
-            $("#id_periodo_inicio").datepicker();
-            $("#id_periodo_fim").datepicker();
-        });
-    </script>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Realizar Análise</button>
-    </form>
+<script>
+    $(function () {
+        $("#id_periodo_inicio").datepicker();
+        $("#id_periodo_fim").datepicker();
+    });
+</script>
+<form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="mb-3">
+        <label for="{{ field.id_for_label }}" class="form-label">
+            {{ field.label }}
+        </label>
+        {{ field }}
+    </div>
+    {% endfor %}
+    <a href="{% url 'index' %}" class="btn btn-outline-primary">Voltar</a>
+    <button type="submit" class="btn btn-primary">Realizar Análise</button>
+</form>
 {% if periodo_inicio and periodo_fim %}
     <h2>Resultado da Análise</h2>
+    <hr>
     <p>Período de análise: {{ periodo_inicio|date:"d/m/Y" }} a {{ periodo_fim|date:"d/m/Y" }}</p>
     <p>Gasto Total: R$ {{ gasto_total }}</p>
     <p>Faturamento Total: R$ {{ faturamento_total }}</p>

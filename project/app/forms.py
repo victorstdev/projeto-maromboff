@@ -29,3 +29,7 @@ class VendaForm(forms.ModelForm):
 class PeriodoForm(forms.Form):
     periodo_inicio = forms.DateField(label='Data de início')
     periodo_fim = forms.DateField(label='Data de término')
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
